@@ -24,19 +24,33 @@ public class FundController {
     @Autowired
     FundRepository repository;
 
-  //  SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
+    //  SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
 
     @GetMapping("/")
     public ResponseEntity<?> getFund() throws ParseException {
-    System.out.println("Number of rows in repository are" + repository.count());
+        System.out.println("Number of rows in repository are" + repository.count());
 
- //   Date AsOfDate =  formatter1.parse(holdingdate);
- //   String testfund =   "Aditya Birla Sun Life Equity Advantage Fund";
-    List<Fund> funds =  repository.findAll();
+        //   Date AsOfDate =  formatter1.parse(holdingdate);
+        //   String testfund =   "Aditya Birla Sun Life Equity Advantage Fund";
+        List<Fund> funds = repository.findAll();
 
-        return new ResponseEntity<>(funds,HttpStatus.OK);
-       //         (((Fund(ArrayList)) funds).get(0)).SchemeName,HttpStatus.OK) ;
+        return new ResponseEntity<>(funds, HttpStatus.OK);
+        //         (((Fund(ArrayList)) funds).get(0)).SchemeName,HttpStatus.OK) ;
         //( "ALL GOOD", HttpStatus.OK);
     }
+
+    @PostMapping("/{amficode}")
+    public ResponseEntity<?> updateAMCCode(@PathVariable("amficode") Integer amficode, @RequestParam("amccode") String amccode) {
+
+        Fund f = repository.findByamfiCode(amficode);
+
+        f.setAmcCode(amccode);
+
+        repository.save(f);
+
+        return new ResponseEntity<>(f, HttpStatus.OK);
+
+    }
+
 
 }
