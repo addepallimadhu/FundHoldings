@@ -63,6 +63,10 @@ public class Fund {
 
     }
 
+    public void setAmcCode(String amcCode) {
+        this.amcCode = amcCode;
+    }
+
 
 
 }
