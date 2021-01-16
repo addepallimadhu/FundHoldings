@@ -9,4 +9,8 @@ import java.util.List;
 public interface FundRepository extends JpaRepository<Fund, Void>, JpaSpecificationExecutor<Fund> {
 
         List<Fund> findBySchemeName(String SchemeName);
+
+        Fund findByamfiCode(Integer AMFICode);
+
+
 }
