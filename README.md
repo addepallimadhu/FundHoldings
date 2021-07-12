@@ -3,4 +3,4 @@ This is a open initiative to bring all publicly available Mutual Funds informati
 
 fundholdings - Contains the backend services 
 
-fundholding-ui (To be Uploaded) - contains the UI code built using React JS 
+fundholding-ui - Contains the UI code built using React JS 
