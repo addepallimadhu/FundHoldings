@@ -4,3 +4,11 @@ This is a open initiative to bring all publicly available Mutual Funds informati
 fundholdings - Contains the backend services 
 
 fundholding-ui - Contains the UI code built using React JS 
+
+## Sample Holdings Files
+https://www.icicipruamc.com/downloads/others/monthly-portfolio-disclosures
+
+https://www.sundarammutual.com/Statutory-Disclosures?Goto=Monthly_Portfolios
+
+## Sample Security files
+https://nsdl.co.in/downloadables/excel/cp-debt/List_of_Securitised_Instruments_08.12.21.xlsx
