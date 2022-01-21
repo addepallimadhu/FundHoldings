@@ -3,14 +3,13 @@ package org.newops.files.excel.service;
 import java.io.IOException;
 import java.util.List;
 
-import org.newops.files.excel.loader.FundSchemesLoader;
-import org.newops.files.excel.loader.ICICIPRUMFHoldingLoader;
-import org.newops.files.excel.loader.ABSLMFHoldingLoader;
-import org.newops.files.excel.loader.HDFCMFHoldingLoader;
-import org.newops.files.excel.loader.EquitySecuritiesLoader;
+import org.newops.files.excel.loader.GenericHoldingLoader;
 import org.newops.files.excel.loader.DebtSecuritiesLoader;
-import org.newops.files.excel.loader.WDMSecuritiesLoader;
+import org.newops.files.excel.loader.FundSchemesLoader;
 import org.newops.files.excel.loader.PPDISecuritiesLoader;
+import org.newops.files.excel.loader.WDMSecuritiesLoader;
+import org.newops.files.excel.loader.EquitySecuritiesLoader;
+import org.newops.model.IndiaAMCHoldingsXLS;
 import org.newops.model.Security;
 import org.newops.repository.SecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,27 +32,9 @@ import org.newops.repository.FundRepository;
         @Autowired
         SecurityRepository securityRepository;
 
-        public void saveHDFCMF(MultipartFile file) {
+        public void saveGeneric(IndiaAMCHoldingsXLS amcFile, MultipartFile file) {
             try {
-                List<Holding> holdings = HDFCMFHoldingLoader.excelToHoldings(file.getInputStream());
-                repository.saveAll(holdings);
-            } catch (IOException e) {
-                throw new RuntimeException("fail to store excel data: " + e.getMessage());
-            }
-        }
-
-        public void saveABSLMF(MultipartFile file) {
-            try {
-                List<Holding> holdings = ABSLMFHoldingLoader.excelToHoldings(file.getInputStream());
-                repository.saveAll(holdings);
-            } catch (IOException e) {
-                throw new RuntimeException("fail to store excel data: " + e.getMessage());
-            }
-        }
-
-        public void saveICICIPRUMF(MultipartFile file) {
-            try {
-                List<Holding> holdings = ICICIPRUMFHoldingLoader.excelToHoldings(file.getInputStream());
+                List<Holding> holdings = GenericHoldingLoader.excelToHoldings(amcFile, file.getInputStream());
                 repository.saveAll(holdings);
             } catch (IOException e) {
                 throw new RuntimeException("fail to store excel data: " + e.getMessage());

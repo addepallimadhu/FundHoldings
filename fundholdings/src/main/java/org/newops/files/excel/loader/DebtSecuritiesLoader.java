@@ -1,5 +1,6 @@
 package org.newops.files.excel.loader;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -16,11 +17,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 public class DebtSecuritiesLoader {
     public static String TYPE = "text/csv";
     static String[] HEADERs = { "Id", "Title", "Description", "Published" };
 
-    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(DebtSecuritiesLoader.class);
+  //  private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(DebtSecuritiesLoader.class);
     public static boolean hasCSVFormat(MultipartFile file) {
 
         if (!TYPE.equals(file.getContentType())) {
@@ -45,7 +47,7 @@ public class DebtSecuritiesLoader {
 
             for (CSVRecord csvRecord : csvRecords) {
 
-               logger.info("Procesing: " + csvRecord.get("SYMBOL"));
+               log.info("Procesing: " + csvRecord.get("SYMBOL"));
 
                 Double IPRate;
                 if (csvRecord.get("IP RATE").compareTo("") == 0)

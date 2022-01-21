@@ -12,8 +12,9 @@ import java.util.Date;
 
 
 import java.text.SimpleDateFormat;
-import java.util.logging.Logger;
 
+
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -21,11 +22,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import org.newops.model.Fund;
 
+@Slf4j
 public class FundSchemesLoader {
     public static String TYPE = "text/csv";
     static String[] HEADERs = { "Id", "Title", "Description", "Published" };
 
-    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(FundSchemesLoader.class);
+   // private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(FundSchemesLoader.class);
     public static boolean hasCSVFormat(MultipartFile file) {
 
         if (!TYPE.equals(file.getContentType())) {
@@ -48,7 +50,7 @@ public class FundSchemesLoader {
 
             for (CSVRecord csvRecord : csvRecords) {
 
-               logger.info("Procesing: " + csvRecord.get("Code"));
+               log.info("Procesing: " + csvRecord.get("Code"));
 
                Date ClosureDate;
 

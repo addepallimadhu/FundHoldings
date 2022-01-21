@@ -1,5 +1,6 @@
 package org.newops.files.excel.loader;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -14,12 +15,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
+@Slf4j
 public class PPDISecuritiesLoader {
     public static String TYPE = "text/csv";
     static String[] HEADERs = { "Id", "Title", "Description", "Published" };
 
-    private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(PPDISecuritiesLoader.class);
+  //  private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(PPDISecuritiesLoader.class);
     public static boolean hasCSVFormat(MultipartFile file) {
 
         if (!TYPE.equals(file.getContentType())) {
@@ -44,7 +45,7 @@ public class PPDISecuritiesLoader {
 
             for (CSVRecord csvRecord : csvRecords) {
 
-               logger.info("Procesing: " + csvRecord.get("SCRIP_NAME"));
+               log.info("Procesing: " + csvRecord.get("SCRIP_NAME"));
 
                Security security = new Security();
 
