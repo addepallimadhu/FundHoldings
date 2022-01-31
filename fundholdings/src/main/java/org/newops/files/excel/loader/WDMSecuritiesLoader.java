@@ -44,7 +44,7 @@ public class WDMSecuritiesLoader {
 
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
 
-            SimpleDateFormat formatter1=new SimpleDateFormat("mm/dd/yyyy");
+            SimpleDateFormat formatter1=new SimpleDateFormat("dd-MMM-yyyy");
 
 
             for (CSVRecord csvRecord : csvRecords) {

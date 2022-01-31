@@ -39,6 +39,66 @@ class ExcelControllerTest {
     }
 
     @Test
+    public void testEquitySecuritiesFileUpload() throws Exception {
+
+        Path path = Paths.get("./data/EQUITY_L.csv");
+
+        MockMultipartFile actualFile = new MockMultipartFile("file", Files.readAllBytes(path));
+
+        mockMvc.perform(multipart("/api/excel/upload/")
+                .file(actualFile)
+                .param("type","security")
+                .param("securityclass","Equity"))
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void testDebtSecuritiesFileUpload() throws Exception {
+
+        Path path = Paths.get("./data/DEBT.csv");
+
+        MockMultipartFile actualFile = new MockMultipartFile("file", Files.readAllBytes(path));
+
+        mockMvc.perform(multipart("/api/excel/upload/")
+                .file(actualFile)
+                .param("type","security")
+                .param("securityclass","Debt"))
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void testWDMSecuritiesFileUpload() throws Exception {
+
+        Path path = Paths.get("./data/wdmlist_20012022.csv");
+
+        MockMultipartFile actualFile = new MockMultipartFile("file", Files.readAllBytes(path));
+
+        mockMvc.perform(multipart("/api/excel/upload/")
+                .file(actualFile)
+                .param("type","security")
+                .param("securityclass","WDM"))
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void testPPDISecuritiesFileUpload() throws Exception {
+
+        Path path = Paths.get("./data/PPDI_Dec_2021.csv");
+
+        MockMultipartFile actualFile = new MockMultipartFile("file", Files.readAllBytes(path));
+
+        mockMvc.perform(multipart("/api/excel/upload/")
+                .file(actualFile)
+                .param("type","security")
+                .param("securityclass","PPDI"))
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
     public void testICICFOFFileUpload() throws Exception {
 
         Path path = Paths.get("./data/FOF.xlsx");
@@ -165,7 +225,8 @@ class ExcelControllerTest {
 
     @Test
     public void testUploadABSLHoldingsFile() throws Exception {
-        Path path = Paths.get("./data/SEBI_Monthly_Portfolio October 20.xlsx");
+     //   Path path = Paths.get("./data/SEBI_Monthly_Portfolio October 20.xlsx");
+        Path path = Paths.get("./data/SEBI_Monthly_Portfolio 31 Dec 2021.xlsx");
 
         MockMultipartFile holdingFileJson = new MockMultipartFile("amcFile", null,
                 "application/json", "{\"fundNameRowIndex\":\"0\",\"fundNameColumnIndex\":\"1\",\"industryRatingColumnIndex\": \"3\",\"quantityColumnIndex\": \"4\",\"marketValueColumnIndex\": \"5\",\"netAssetsPercentageColumnIndex\": \"6\",\"yieldColumnIndex\": \"7\",\"boldExcludeException\": [\"Net Receivables / (Payables)\"],\"endOfDataColumnString\": \"GRAND TOTAL\",\"asOfDatePattern\": \"MMMM dd,yyyy\",\"asOfDatePrefix\": \"Monthly Portfolio Statement as on \" }".getBytes());
